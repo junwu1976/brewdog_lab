@@ -4,6 +4,7 @@
     <div class="main-container">
       <beer-list :beers="beers"></beer-list>
       <beer-detail :beer = selectedBeer></beer-detail>
+      <beer-favourites-list></beer-favourites-list>
     </div>
   </div>
 </template>
@@ -11,6 +12,7 @@
 <script>
 import BeerList from './components/BeerList.vue';
 import BeerDetail from './components/BeerDetail.vue';
+import BeerFavouritesList from './components/BeerFavouritesList.vue';
 import { eventBus } from './main.js';
 
 export default {
@@ -32,7 +34,8 @@ export default {
   },
   components: {
     "beer-list": BeerList,
-    "beer-detail": BeerDetail
+    "beer-detail": BeerDetail,
+    "beer-favourites-list": BeerFavouritesList
   }
 }
 </script>
