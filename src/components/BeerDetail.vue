@@ -6,10 +6,10 @@
       <img :src="beer.image_url" alt="">
       <p>{{ beer.description }}</p>
       <ul>
-        <beer-ingredient-detail v-for="(ingredient, index) in beer.ingredients" :ingredient="ingredient" :key="index"></beer-ingredient-detail>
-        <!-- <li v-for="(value, key) in beer.ingredients" v-bind:key="key" v-bind:value="value">
-          <beer-ingredient-detail></beer-ingredient-detail>
-        </li> -->
+        <li v-for="(value, name) in beer.ingredients" v-bind:key="name" >
+          {{ name }}:
+            <beer-ingredient-detail :ingredient_detail="value"></beer-ingredient-detail>
+        </li>
       </ul>
   </div>
 </template>
@@ -29,8 +29,8 @@ export default {
       }
     },
     components: {
-    "beer-ingredient-detail": BeerIngredientDetail
-  }
+      "beer-ingredient-detail": BeerIngredientDetail
+    }
 
 }
 </script>

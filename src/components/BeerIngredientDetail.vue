@@ -1,16 +1,31 @@
 <template>
     <div>
-        <li >{{ ingredient }}</li>
-
-        <!-- <li v-for="(value, key) in beer.ingredients" v-bind:key="key" v-bind:value="value"> -->
+        <div v-if="isIngredientDetailArray">
+            <p v-for="detail in ingredient_detail" v-bind:key="detail.id">
+                <beer-ingredient-detail-list :ingredient_detail_list="detail"></beer-ingredient-detail-list>
+            </p>
+        </div>
+        <div v-else>
+            {{ ingredient_detail }}
+        </div>
     </div>
-  <!-- {{key}}{{value}} -->
+
 </template>
 
 <script>
+import BeerIngredientDetailList from './BeerIngredientDetailList.vue';
+
 export default {
     name: "beer-ingredient-detail",
-    props: ['ingredient']
+    props: ['ingredient_detail'],
+    computed: {
+        isIngredientDetailArray(){
+            return Array.isArray(this.ingredient_detail)? true:false;
+        }
+    },
+    components: {
+      "beer-ingredient-detail-list": BeerIngredientDetailList
+    }
 }
 </script>
 
