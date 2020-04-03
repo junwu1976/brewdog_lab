@@ -2,7 +2,10 @@
     <div>
         <h2>Favourites List</h2>
         <ul>
-           <li v-for="(beer, index) in favourites" :beer="beer" :key="index">{{beer.name}}<button v-on:click="removeFromFavourites(beer)">Remove</button></li>
+           <li v-for="(beer, index) in favourites" :beer="beer" :key="index">
+               <span class="first-column">{{beer.name}}</span>
+               <span class="second-column"><button v-on:click="removeFromFavourites(beer)">Remove</button></span>
+            </li>
         </ul>
     </div>
 </template>
@@ -21,6 +24,8 @@ export default {
         eventBus.$on('add-to-favourites', (beer) => {
             if(!this.favourites.includes(beer)){
                 this.favourites.push(beer);
+            }else{
+                alert(`${beer.name} has been added to favourites list already!`);
             }
             
         })
@@ -36,5 +41,23 @@ export default {
 </script>
 
 <style scoped>
+
+li{
+    text-align: left;
+    border: 2px solid lightgray;
+    height: 40px;
+    margin: 20px 0;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+span.first-column{
+    width: 80%;
+}
+
+span.second-column{
+    align-content: right;
+}
 
 </style>

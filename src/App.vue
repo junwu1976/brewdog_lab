@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <h1>Beers</h1>
-    <div class="main-container">
-      <beer-list :beers="beers"></beer-list>
-      <beer-detail :beer = selectedBeer></beer-detail>
-      <beer-favourites-list></beer-favourites-list>
+  <div id="app">
+    <h1>BeerDog</h1>
+    <div id="main-container">
+      <beer-list id="beer-list" :beers="beers"></beer-list>
+      <beer-detail id="beer-detail" v-if="selectedBeer" :beer = selectedBeer></beer-detail>
+      <beer-favourites-list id="beer-favourites-list"></beer-favourites-list>
     </div>
   </div>
 </template>
@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       beers: [],
-      selectedBeer: {}
+      selectedBeer: null
     }
   },
   mounted(){
@@ -40,6 +40,21 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="css" scoped>
+#app {
+  background-color: #6EC3F4;
+}
+
+#main-container {
+  display: flex;
+}
+
+#beer-list {
+  width: 30%;
+}
+
+#beer-detail {
+  width: 40%;
+}
 
 </style>
