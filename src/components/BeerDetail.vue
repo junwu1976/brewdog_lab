@@ -6,15 +6,13 @@
       <img :src="beer.image_url" alt="">
       <p>{{ beer.description }}</p>
       <ul>
-        <li v-for="(value, name) in beer.ingredients" v-bind:key="name" >
-          {{ name }}:
+        <li v-for="(value, name) in ingredients_no_repeat" v-bind:key="name" >
+          {{ name | capitalize }}:
             <beer-ingredient-detail :ingredient_detail="value"></beer-ingredient-detail>
         </li>
       </ul>
   </div>
 </template>
-
-
 
 <script>
 import { eventBus } from '../main.js';
@@ -30,8 +28,18 @@ export default {
     },
     components: {
       "beer-ingredient-detail": BeerIngredientDetail
+    },
+    filters:{
+      capitalize: function(category_name){
+//        console.log(`category name type:${typeof(category_name)}`);
+        return category_name.toUpperCase();
+      }
+    },
+    computed:{
+      ingredients_no_repeat: function(){
+        return this.beer.ingredients;
+      }
     }
-
 }
 </script>
 
